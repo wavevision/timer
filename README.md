@@ -22,20 +22,22 @@ npm install --save @wavevision/timer
 
 ## Usage
 
+Create your own timer.
+
 ```typescript
 import timer from '@wavevision/timer';
 
-const timeout = timer(() => alert('Time is up!'), 1000);
-
-// start timeout
-timeout.start();
-// pause timeout
-timeout.pause();
-// resume timeout
-timeout.resume();
-// clear timeout
-timeout.clear();
-
-const autoStarted = timer(() => alert('Hello!'), 500, true);
-autoStarted.pause();
+timer(() => alert('Time is up!'), 1000);
+// this timer will be auto-started
+timer(() => alert('Hello!'), 500, true);
 ```
+
+The returned object exposes following functions:
+
+- **`clear: void`** – clears the timeout
+- **`pause: number`** – pauses the timeout, returns remaining time
+- **`remains: number`** – returns remaining time
+- **`restart: void`** – clears and starts the timeout over again
+- **`resume: void`** – resumes the timeout (or starts if not running)
+- **`running: boolean`** – returns whether the timeout is running at the moment
+- **`start: void`** – starts the timeout (if not running already)
