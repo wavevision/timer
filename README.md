@@ -1,6 +1,6 @@
 # Wavevision Timer
 
-Simple utility for creating resumable timeouts written in TypeScript.
+Simple utility for creating resumable timeouts written in TypeScript. Works both in Node and browser environments.
 
 ## Installation
 
