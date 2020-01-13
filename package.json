@@ -1,6 +1,6 @@
 {
   "name": "@wavevision/timer",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Simple resumable timeout handler written in TypeScript.",
   "keywords": [
     "browser",
