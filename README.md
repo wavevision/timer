@@ -40,4 +40,4 @@ The returned object exposes following functions:
 - **`restart: void`** – clears and starts the timeout over again
 - **`resume: void`** – resumes the timeout (or starts if not running)
 - **`running: boolean`** – returns whether the timeout is running at the moment
-- **`start: void`** – starts the timeout (if not running already)
+- **`start: void`** – starts the timeout (or resumes if paused)
