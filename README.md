@@ -35,10 +35,10 @@ timer(() => alert('Hello!'), 500, true);
 
 The returned object exposes following functions:
 
-- **`clear: void`** – clears the timeout
-- **`pause: number`** – pauses the timeout, returns remaining time
-- **`remains: number`** – returns remaining time
-- **`restart: void`** – clears and starts the timeout over again
-- **`resume: void`** – resumes the timeout (or starts if not running)
-- **`running: boolean`** – returns whether the timeout is running at the moment
-- **`start: void`** – starts the timeout (or resumes if paused)
+- **`clear(): void`** – clears the timeout
+- **`pause(): number`** – pauses the timeout, returns remaining time
+- **`remains(): number`** – returns remaining time
+- **`restart(): void`** – clears and starts the timeout over again
+- **`resume(): void`** – resumes the timeout (or starts if not running)
+- **`running(): boolean`** – returns whether the timeout is running at the moment
+- **`start(): void`** – starts the timeout (or resumes if paused)
