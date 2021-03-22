@@ -5,7 +5,7 @@ on:
 
 jobs:
   ci:
-    name: ci
+    name: CI
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -26,6 +26,8 @@ jobs:
           path: ${{ steps.yarncache.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: ${{ runner.os }}-yarn-
+      - name: Install yarn dependencies
+        run: yarn install
       - name: CI
         run: yarn ci
       - name: Coveralls
