@@ -1,4 +1,10 @@
 type TimerFn<T = void> = () => T;
+type TimerState = {
+  id: NodeJS.Timeout;
+  start: number;
+  remains: number;
+  running: boolean;
+};
 
 export interface Timer {
   readonly clear: TimerFn;
@@ -17,37 +23,45 @@ const timer = (
   delay: number,
   autoStart = false,
 ): Timer => {
-  let id: NodeJS.Timeout;
-  let start: number;
-  let remains = delay;
-  let running = false;
-  const clear = (): void => clearTimeout(id);
+  const state = {
+    remains: delay,
+    running: false,
+  } as TimerState;
+  const clear: Timer['clear'] = () => {
+    clearTimeout(state.id);
+    state.running = false;
+  };
+  const running: Timer['running'] = () => state.running;
+  const remains: Timer['remains'] = () => {
+    if (running()) return state.remains - (now() - state.start);
+    return state.remains;
+  };
   const pause: Timer['pause'] = () => {
     clear();
-    running = false;
-    remains -= now() - start;
-    return remains;
+    state.remains = remains();
+    state.running = false;
+    return remains();
   };
   const resume: Timer['resume'] = () => {
-    start = now();
     clear();
-    id = setTimeout(callback, remains);
-    running = true;
+    state.start = now();
+    state.id = setTimeout(callback, remains());
+    state.running = true;
   };
   const restart: Timer['restart'] = () => {
-    remains = delay;
+    state.remains = delay;
     resume();
   };
   if (autoStart) resume();
   return {
     clear,
     pause,
-    remains: () => remains,
+    remains,
     resume,
     restart,
-    running: () => running,
+    running,
     start: () => {
-      if (!running) resume();
+      if (!running()) resume();
     },
   };
 };
