@@ -1,3 +1,4 @@
+name: CI
 on:
   - push
   - pull_request
@@ -28,6 +29,6 @@ jobs:
       - name: CI
         run: yarn ci
       - name: Coveralls
-        uses: coverallsapp/github-action@v1
+        uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
