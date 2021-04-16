@@ -33,7 +33,7 @@
   "homepage": "https://github.com/wavevision/timer",
   "devDependencies": {
     "@types/jest": "^26.0.15",
-    "@wavevision/coding-standard": "^5.2.2",
+    "@wavevision/coding-standard": "^6.0.2",
     "eslint": "^7.12.1",
     "eslint-plugin-jest": "^24",
     "jest": "^26.6.1",
